@@ -1,4 +1,5 @@
-# ***📘 Introduction***
+# ***📘 INTRODUCTION***
+
 
 This study presents the training of one of the largest convolutional neural networks (CNNs) at the time, applied to subsets of the ImageNet dataset used in the ILSVRC-2010 and ILSVRC-2012 competitions. The model was set to classify 1.2 million high-resolution images into 1,000 distinct categories.
 
@@ -71,7 +72,7 @@ The primary aim of Krizhevsky et al. (2012) was to demonstrate that deep CNNs, w
 
 
 
-# ***🛠️ Procedures***
+# ***🛠️ PROCEDURES***
 
 ### 1️⃣ Dataset
 
@@ -206,7 +207,7 @@ This prevents the model from relying too much on specific neurons and forces it 
 It increases training time, but improves **generalization**.
 
 ---
-### Learning Details 🚀
+### 🚀 Learning Details 
 
 The model was trained using stochastic gradient descent with:
 - Batch size: 128
@@ -219,7 +220,30 @@ Biases in some layers (2nd, 4th, 5th conv layers and fully-connected) were set t
 A single learning rate (starting at 0.01) was used for all layers and manually reduced by 10× whenever validation error stopped improving with the current learning rate.  
 Training ran for about 90 epochs on 1.2 million images, taking 5-6 days on two NVIDIA GTX 580 GPUs.
 
-# 📊 ***Results***
+### 🧐 Qualitative Evaluation
+### GPU Specialization
+- **GPU 1** primarily processes *color-agnostic* kernels.  
+- **GPU 2** primarily handles *color-specific* kernels.  
+- This indicates that each GPU specializes in different visual processing tasks.
+
+### Model Evaluation
+- The model’s learning is assessed using its top-5 predictions across eight test images.
+
+### Feature Activation Similarity
+- The model’s understanding is further analyzed through activations in the last hidden layer (4096 dimensions).  
+- Two images are considered semantically similar if the Euclidean distance between their activation vectors is small.  
+- Unlike traditional image comparison methods (e.g., L2 distance on raw pixels), this approach captures semantic similarity — such as a dog sitting vs. a dog running — despite visual differences.
+
+#### Why Feature Activations?
+- The last hidden layer encodes high-level concepts like object type and shape.  
+- Even if two images differ visually, similar activation vectors suggest the model interprets them similarly in meaning.
+
+### Efficiency and Future Improvements
+- Comparing 4096-dimensional vectors is computationally expensive.  
+- Future improvements could include using an autoencoder to compress these vectors into compact binary codes, allowing for faster similarity checks.
+
+
+# 📊 ***RESULTS***
 
 The study showed that training a large, deep convolutional neural network (CNN) on a massive image dataset (ImageNet) greatly improves object recognition.
 
@@ -230,5 +254,10 @@ The study showed that training a large, deep convolutional neural network (CNN) 
 - Regularization techniques like dropout and data augmentation reduced overfitting and improved generalization.
 - The model achieved a Top-5 error rate of 15.3% on ImageNet 2012, a major improvement over the previous 26%, setting a new state-of-the-art.
 
-# ***Conclusion***
 
+# 📌***CONCLUSION***
+The researchers concluded that deep convolutional neural networks, when trained on large-scale datasets like *ImageNet* and accelerated by GPUs, can achieve a substantial breakthrough in image classification accuracy. They emphasized that the combination of architectural innovations such as **ReLU activations**, **dropout regularization**, and **data augmentation** techniques were critical for effective training and improved generalization. Their results demonstrated the power of learning hierarchical feature representations directly from raw image data, eliminating the need for hand-crafted features. This work not only set a new state-of-the-art in image classification but also paved the way for widespread adoption of deep learning methods in various computer vision tasks.
+
+
+# 📝***PERSONAL NOTES***
+I find it interesting that before this study at that time it was considered nearly impossible or too slow to train such large networks. Moreover I find it interesting how they chose to distribute the model across two GPUs to handle the computational load. At that time dropout wasn’t a very used technique. They introduced dropout as a practical regularization method in deep CNNs, which became a standard technique to reduce overfitting.
