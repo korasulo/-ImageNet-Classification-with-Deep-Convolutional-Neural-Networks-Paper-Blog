@@ -1,3 +1,9 @@
+# ***ImageNet Classification with Deep Convolutional Neural Networks***
+As part of exploring influential research in deep learning, this summary reviews Krizhevsky et al.’s 2012 paper ImageNet Classification with Deep Convolutional Neural Networks, which played a key role in advancing modern computer vision.  
+  
+![image](https://github.com/user-attachments/assets/0b4d8342-fd9b-48c5-aa5f-865386e72a64)
+
+
 # ***📘 INTRODUCTION***
 
 
@@ -220,6 +226,7 @@ Biases in some layers (2nd, 4th, 5th conv layers and fully-connected) were set t
 A single learning rate (starting at 0.01) was used for all layers and manually reduced by 10× whenever validation error stopped improving with the current learning rate.  
 Training ran for about 90 epochs on 1.2 million images, taking 5-6 days on two NVIDIA GTX 580 GPUs.
 
+---
 ### 🧐 Qualitative Evaluation
 ### GPU Specialization
 - **GPU 1** primarily processes *color-agnostic* kernels.  
@@ -256,8 +263,8 @@ The study showed that training a large, deep convolutional neural network (CNN) 
 
 
 # 📌***CONCLUSION***
-The researchers concluded that deep convolutional neural networks, when trained on large-scale datasets like *ImageNet* and accelerated by GPUs, can achieve a substantial breakthrough in image classification accuracy. They emphasized that the combination of architectural innovations such as **ReLU activations**, **dropout regularization**, and **data augmentation** techniques were critical for effective training and improved generalization. Their results demonstrated the power of learning hierarchical feature representations directly from raw image data, eliminating the need for hand-crafted features. This work not only set a new state-of-the-art in image classification but also paved the way for widespread adoption of deep learning methods in various computer vision tasks.
+Krizhevsky et al. (2012) demonstrated that deep convolutional neural networks (CNNs), when trained on large scale datasets such as ImageNet and accelerated by GPUs, achieve significantly higher image classification accuracy compared to traditional methods. Key architectural components including ReLU activations, dropout, and data augmentation were essential for improving training efficiency and generalization. The model was able to learn hierarchical feature representations directly from raw pixel data, reducing reliance on hand engineered features. These results helped establish CNNs as a practical and effective approach for large scale image recognition tasks.
 
 
 # 📝***PERSONAL NOTES***
-I find it interesting that before this study at that time it was considered nearly impossible or too slow to train such large networks. Moreover I find it interesting how they chose to distribute the model across two GPUs to handle the computational load. At that time dropout wasn’t a very used technique. They introduced dropout as a practical regularization method in deep CNNs, which became a standard technique to reduce overfitting.
+It is notable that before this study, training large neural networks was considered nearly impossible or too slow due to computational limitations. To address this, the authors distributed the model across two GPUs to manage the computational load efficiently. Additionally, dropout was not widely used at the time; they introduced it as a practical regularization method in deep CNNs, which later became a standard technique to reduce overfitting.
